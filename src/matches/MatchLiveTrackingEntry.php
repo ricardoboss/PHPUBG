@@ -33,6 +33,7 @@ class MatchLiveTrackingEntry implements \JsonSerializable {
 			, // MatchDisplay
 			$seasonId,
 			$regionId,
+			, // Region
 			$date,
 			$this->delta,
 			$this->value,
