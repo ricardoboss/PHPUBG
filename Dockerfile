@@ -4,7 +4,7 @@ MAINTAINER Ricardo Boss
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update -y
-RUN apt-get -y install software-properties-common
+RUN apt-get -y install software-properties-common > /dev/null
 RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php
 RUN apt-get update -y
 RUN apt-get -y --no-install-recommends install \
@@ -24,8 +24,8 @@ RUN apt-get -y --no-install-recommends install \
                 php7.1-zip \
                 php-xdebug \
                 unzip \
-                wget
-RUN apt-get update
+                wget > /dev/null
+RUN apt-get update -y
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 RUN git clone https://github.com/MCMainiac/PHPUBG.git
