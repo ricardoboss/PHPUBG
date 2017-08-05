@@ -1,6 +1,6 @@
 # PHPUBG
 
-![Test Status](https://api.travis-ci.org/MCMainiac/PHPUBG.svg?branch=master)
+[![Test Status](https://api.travis-ci.org/MCMainiac/PHPUBG.svg?branch=master)](https://travis-ci.org/MCMainiac/PHPUBG)
 
 PHP wrapper for the PUBG Tracker API.
 
