@@ -1,7 +1,14 @@
+dist: trusty
+
 language: php
+
 php:
   - '7.1'
   - nightly
 
-install: composer install --no-interaction
-script: phpunit --bootstrap src/autoload.php tests
+before_install:
+  - sudo apt-get -y install php7-cli php7-curl php5-gnutls
+
+before_script:
+  - php -r "printf('PHP %s', phpversion());"
+  - composer install --no-interaction
