@@ -37,6 +37,23 @@ class Stats implements \ArrayAccess, \Countable, \Iterator, \JsonSerializable {
 	}
 
 	/**
+	 * Get all stats in a specific category.
+	 *
+	 * @param \PHPUBG\stats\StatCategory $category The category to filter
+	 *
+	 * @return array An array of {@see \PHPUBG\stats\Stat} objects with the selected category.
+	 */
+	public function getFromCategory(StatCategory $category) {
+		$arr = [];
+
+		foreach ($this->stats as $stat)
+			if ($stat->getCategory() == $category)
+				$arr[] = $stat;
+
+		return $arr;
+	}
+
+	/**
 	 * @return MatchMode
 	 */
 	public function getMatchMode(): MatchMode {

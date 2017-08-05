@@ -6,6 +6,7 @@ use PHPUBG\Player;
 use PHPUBG\PubgBuilder;
 use PHPUBG\Region;
 use PHPUBG\Season;
+use PHPUBG\stats\StatCategory;
 use PHPUnit\Framework\TestCase;
 
 class PubgBuilderTest extends TestCase {
@@ -58,9 +59,10 @@ class PubgBuilderTest extends TestCase {
 	 *
 	 * @param \PHPUBG\Player $player
 	 *
+	 * @return array
 	 * @throws \PHPUnit\Framework\Exception
 	 */
-	public function testFilterStats(Player $player) {
+	public function testFilterStats(Player $player): array {
 		$stats = $player->getStats();
 		$this->assertGreaterThan(0, count($stats));
 
@@ -84,6 +86,8 @@ class PubgBuilderTest extends TestCase {
 			$this->assertAttributeEquals($seasonEA3, 'season', $stat);
 			$this->assertAttributeEquals($modeSolo, 'matchMode', $stat);
 		}
+
+		return $stats;
 	}
 
 	/**
@@ -100,5 +104,24 @@ class PubgBuilderTest extends TestCase {
 
 		$this->assertEquals(json_last_error(), JSON_ERROR_NONE);
 		$this->assertEquals($playerArray['nickname'], $player->getNickname());
+	}
+
+	/**
+	 * @depends  testGetPlayerByName
+	 *
+	 * @param \PHPUBG\Player $player
+	 *
+	 * @throws \PHPUnit\Framework\AssertionFailedError
+	 */
+	public function testStatCategoryFilter(Player $player) {
+		$stats = $player->getStats(Region::get(Region::EUROPE))[0];
+
+		$this->assertTrue(get_class($stats) == \PHPUBG\stats\Stats::class);
+
+		$performanceCategory = StatCategory::get(StatCategory::PERFORMANCE);
+		$performanceStats = $stats->getFromCategory($performanceCategory);
+
+		foreach ($performanceStats as $stat)
+			$this->assertEquals($stat->getCategory(), $performanceCategory);
 	}
 }
