@@ -6,9 +6,6 @@ php:
   - '7.1'
   - nightly
 
-before_install:
-  - sudo apt-get -y install php7-cli php7-curl php5-gnutls
-
 before_script:
   - php -r "printf('PHP %s', phpversion());"
   - composer install --no-interaction
