@@ -1,7 +1,16 @@
+sudo: required
+
+services:
+  - docker
+
 language: php
+
 php:
   - '7.1'
   - nightly
 
-install: composer install --no-interaction
-script: phpunit --bootstrap src/autoload.php tests
+before_install:
+  - docker pull ubuntu:16.04
+
+script:
+  - docker build .
