@@ -6,7 +6,7 @@ use PHPUBG\Region;
 use PHPUBG\Season;
 use PHPUBG\traits\HasId;
 
-class MatchHistoryEntry {
+class MatchHistoryEntry implements \JsonSerializable {
 	use HasId;
 
 	/** @var int Unix timestamp of the last update. */
@@ -220,5 +220,36 @@ class MatchHistoryEntry {
 	 */
 	public function getWins(): int {
 		return $this->wins;
+	}
+
+	/**
+	 * Specify data which should be serialized to JSON
+	 *
+	 * @link  http://php.net/manual/en/jsonserializable.jsonserialize.php
+	 * @return mixed data which can be serialized by <b>json_encode</b>,
+	 * which is a value of any type other than a resource.
+	 * @since 5.4.0
+	 */
+	function jsonSerialize() {
+		return [
+			'updated' => $this->updated,
+			'season' => $this->season,
+			'matchMode' => $this->matchMode,
+			'region' => $this->region,
+			'rounds' => $this->rounds,
+			'wins' => $this->wins,
+			'kills' => $this->kills,
+			'assists' => $this->assists,
+			'top10' => $this->top10,
+			'rating' => $this->rating,
+			'ratingChange' => $this->ratingChange,
+			'ratingRank' => $this->ratingRank,
+			'ratingRankChange' => $this->ratingRankChange,
+			'headshots' => $this->headshots,
+			'kd' => $this->kd,
+			'damage' => $this->damage,
+			'timeSurvived' => $this->timeSurvived,
+			'moveDistance' => $this->moveDistance
+		];
 	}
 }

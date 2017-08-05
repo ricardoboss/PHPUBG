@@ -2,7 +2,7 @@
 
 namespace PHPUBG\stats;
 
-class Stat {
+class Stat implements \JsonSerializable {
 	/** @var null */
 	protected $partition;
 
@@ -141,5 +141,29 @@ class Stat {
 	 */
 	public function __toString(): string {
 		return $this->label . ": " . $this->displayValue;
+	}
+
+	/**
+	 * Specify data which should be serialized to JSON
+	 *
+	 * @link  http://php.net/manual/en/jsonserializable.jsonserialize.php
+	 * @return mixed data which can be serialized by <b>json_encode</b>,
+	 * which is a value of any type other than a resource.
+	 * @since 5.4.0
+	 */
+	function jsonSerialize() {
+		return [
+			'partition' => $this->partition,
+			'label' => $this->label,
+			'subLabel' => $this->subLabel,
+			'field' => $this->field,
+			'category' => $this->category,
+			'valueInt' => $this->valueInt,
+			'valueDec' => $this->valueDec,
+			'value' => $this->value,
+			'rank' => $this->rank,
+			'percentile' => $this->percentile,
+			'displayValue' => $this->displayValue
+		];
 	}
 }

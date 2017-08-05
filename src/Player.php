@@ -2,12 +2,12 @@
 
 namespace PHPUBG;
 
-use PHPUBG\matches\Match;
+use PHPUBG\matches\MatchLiveTrackingEntry;
 use PHPUBG\matches\MatchHistoryEntry;
 use PHPUBG\matches\MatchMode;
 use PHPUBG\stats\Stats;
 
-class Player {
+class Player implements \JsonSerializable {
 	/** @var int The id of the platform the player uses. */
 	protected $platformId;
 
@@ -80,7 +80,7 @@ class Player {
 		$this->lastUpdated = strtotime($lastUpdated);
 
 		foreach ($liveTrackingArray as $liveTrackingMatchArray)
-			$this->liveTracking[] = new Match($liveTrackingMatchArray);
+			$this->liveTracking[] = new MatchLiveTrackingEntry($liveTrackingMatchArray);
 
 		foreach ($statsArray as $stats) {
 			$region = Region::findByProperty($stats['Region']);
@@ -212,5 +212,29 @@ class Player {
 	 */
 	public function getSelectedRegion(): Region {
 		return $this->selectedRegion;
+	}
+
+	/**
+	 * Specify data which should be serialized to JSON
+	 *
+	 * @link  http://php.net/manual/en/jsonserializable.jsonserialize.php
+	 * @return mixed data which can be serialized by <b>json_encode</b>,
+	 * which is a value of any type other than a resource.
+	 * @since 5.4.0
+	 */
+	function jsonSerialize() {
+		return [
+			'platformId' => $this->platformId,
+			'accountId' => $this->accountId,
+			'avatarUrl' => $this->avatarUrl,
+			'selectedRegion' => $this->selectedRegion,
+			'defaultSeason' => $this->defaultSeason,
+			'lastUpdated' => $this->lastUpdated,
+			'liveTracking' => $this->liveTracking,
+			'nickname' => $this->nickname,
+			'pubgTrackerId' => $this->pubgTrackerId,
+			'stats' => $this->stats,
+			'matchHistory' => $this->matchHistory
+		];
 	}
 }

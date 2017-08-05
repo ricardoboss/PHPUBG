@@ -6,7 +6,7 @@ use PHPUBG\matches\MatchMode;
 use PHPUBG\Region;
 use PHPUBG\Season;
 
-class Stats implements \ArrayAccess, \Countable, \Iterator {
+class Stats implements \ArrayAccess, \Countable, \Iterator, \JsonSerializable {
 	/** @var array An array of {@see Stat}s. */
 	protected $stats = [];
 
@@ -197,5 +197,22 @@ class Stats implements \ArrayAccess, \Countable, \Iterator {
 	 */
 	public function rewind() {
 		$this->pointer = 0;
+	}
+
+	/**
+	 * Specify data which should be serialized to JSON
+	 *
+	 * @link  http://php.net/manual/en/jsonserializable.jsonserialize.php
+	 * @return mixed data which can be serialized by <b>json_encode</b>,
+	 * which is a value of any type other than a resource.
+	 * @since 5.4.0
+	 */
+	function jsonSerialize() {
+		return [
+			'region' => $this->region,
+			'season' => $this->season,
+			'matchMode' => $this->matchMode,
+			'stats' => $this->stats
+		];
 	}
 }

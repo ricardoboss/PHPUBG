@@ -5,7 +5,7 @@ namespace PHPUBG\matches;
 use PHPUBG\Region;
 use PHPUBG\Season;
 
-class Match {
+class MatchLiveTrackingEntry implements \JsonSerializable {
 	/** @var MatchMode The match mode of this match. */
 	protected $matchMode;
 
@@ -92,5 +92,25 @@ class Match {
 	 */
 	public function getSeason(): Season {
 		return $this->season;
+	}
+
+	/**
+	 * Specify data which should be serialized to JSON
+	 *
+	 * @link  http://php.net/manual/en/jsonserializable.jsonserialize.php
+	 * @return mixed data which can be serialized by <b>json_encode</b>,
+	 * which is a value of any type other than a resource.
+	 * @since 5.4.0
+	 */
+	function jsonSerialize() {
+		return [
+			'matchMode' => $this->matchMode,
+			'season' => $this->season,
+			'region' => $this->region,
+			'date' => $this->date,
+			'delta' => $this->delta,
+			'value' => $this->value,
+			'message' => $this->message
+		];
 	}
 }

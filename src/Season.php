@@ -5,7 +5,7 @@ namespace PHPUBG;
 use PHPUBG\traits\HasDisplayString;
 use PHPUBG\traits\IsUnique;
 
-class Season {
+class Season implements \JsonSerializable {
 	use IsUnique, HasDisplayString;
 
 	const EARLY_ACCESS_1 = 1;
@@ -33,6 +33,22 @@ class Season {
 
 		if (is_null(self::$uniqueProperty))
 			self::$uniqueProperty = "seasonIdentifier";
+	}
+
+	/**
+	 * Specify data which should be serialized to JSON
+	 *
+	 * @link  http://php.net/manual/en/jsonserializable.jsonserialize.php
+	 * @return mixed data which can be serialized by <b>json_encode</b>,
+	 * which is a value of any type other than a resource.
+	 * @since 5.4.0
+	 */
+	function jsonSerialize() {
+		return [
+			'id' => $this->id,
+			'identifier' => $this->seasonIdentifier,
+			'display' => $this->display
+		];
 	}
 }
 
