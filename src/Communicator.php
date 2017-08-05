@@ -93,7 +93,8 @@ class Communicator {
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_URL => $url,
 			CURLOPT_SSL_VERIFYHOST => false,
-			CURLOPT_SSL_VERIFYPEER => false
+			CURLOPT_SSL_VERIFYPEER => false,
+			CURLOPT_SSLVERSION => CURL_SSLVERSION_TLSv1_1
 		]);
 
 		$jsonResponse = curl_exec($ch);
