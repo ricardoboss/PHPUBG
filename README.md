@@ -10,9 +10,8 @@ PHPUBG is available on [packagist](https://packagist.org/packages/mcmainiac/phpu
 
     composer require mcmainiac/phpubg
 
-You can also download this repository as a `.zip` and include the  [`autoload.php`](https://github.com/MCMainiac/PHPUBG/blob/master/src/autoload.php):
-
-    require "path/to/phpubg/src/autoload.php";
+To use this as a standalone library (without composer), download the repository and extract it somewhere (preferably in your projects libraries folder) and set up an `autoloader` to load all files dynamically.
+The root namespace of this library is `\PHPUBG`.
 
 ## Usage
 
