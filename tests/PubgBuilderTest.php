@@ -85,4 +85,20 @@ class PubgBuilderTest extends TestCase {
 			$this->assertAttributeEquals($modeSolo, 'matchMode', $stat);
 		}
 	}
+
+	/**
+	 * @depends testGetPlayerByName
+	 *
+	 * @param \PHPUBG\Player $player
+	 */
+	public function testJsonExport(Player $player) {
+		$json = json_encode($player);
+
+		$this->assertEquals(json_last_error(), JSON_ERROR_NONE);
+
+		$playerArray = json_decode($json, true);
+
+		$this->assertEquals(json_last_error(), JSON_ERROR_NONE);
+		$this->assertEquals($playerArray['nickname'], $player->getNickname());
+	}
 }
