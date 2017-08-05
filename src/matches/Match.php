@@ -37,7 +37,7 @@ class Match {
 			$this->delta,
 			$this->value,
 			$this->message
-		) = $matchArray;
+		) = array_values($matchArray);
 
 		$this->matchMode = MatchMode::get($matchMode);
 		$this->season = Season::get($seasonId);

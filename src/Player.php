@@ -73,7 +73,7 @@ class Player {
 			$this->pubgTrackerId,
 			$statsArray,
 			$matchHistoryArray
-		) = $data;
+		) = array_values($data);
 
 		$this->selectedRegion = Region::findByProperty($regionIdentifier);
 		$this->defaultSeason = Season::findByProperty($seasonIdentifier);

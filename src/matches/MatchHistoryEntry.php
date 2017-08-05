@@ -88,7 +88,7 @@ class MatchHistoryEntry {
 			$this->damage,
 			$this->timeSurvived,
 			$this->moveDistance
-		) = $matchArray;
+		) = array_values($matchArray);
 
 		$this->updated = strtotime($updated);
 		$this->season = Season::get($seasonId);
