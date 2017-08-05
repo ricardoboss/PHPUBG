@@ -68,7 +68,7 @@ class PubgBuilderTest extends TestCase {
 		$seasonEA3 = Season::get(Season::EARLY_ACCESS_3);
 		$modeSolo = MatchMode::get(MatchMode::SOLO);
 
-		$statsEu = $player->getStats();
+		$statsEu = $player->getStats($regionEurope);
 		foreach ($statsEu as $stat)
 			$this->assertAttributeEquals($regionEurope, 'region', $stat);
 
