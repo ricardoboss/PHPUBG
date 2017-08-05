@@ -18,7 +18,7 @@ You can also download this repository as a `.zip` and include the  [`autoload.ph
 
 > To get your own `api key`, please visit [pubgtracker.com/site-api](https://pubgtracker.com/site-api).
 
-Assuming you are at the root of your project (the `vendor` folder is within you current folder):
+Assuming you are at the root of your project (the `vendor` folder is within your current folder):
 
     <?php
 
