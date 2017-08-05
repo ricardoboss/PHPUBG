@@ -1,0 +1,15 @@
+{
+  "name": "mcmainiac/phpubg",
+  "description": "PHP Wrapper for PUBG tracker api",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ricardo Boss",
+      "email": "ricardo@mcmainiac.de"
+    }
+  ],
+  "require-dev": {
+    "phpunit/phpunit": "6.2"
+  }
+}
