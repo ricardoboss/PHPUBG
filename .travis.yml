@@ -11,4 +11,6 @@ php:
 
 before_install:
   - docker pull ubuntu:16.04
-  - docker run -it ubuntu bash
+
+script:
+  - docket build .
