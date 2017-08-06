@@ -3,11 +3,11 @@ MAINTAINER Ricardo Boss
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update -y
-RUN apt-get -y install software-properties-common > /dev/null
-RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php
-RUN apt-get update -y
-RUN apt-get -y --no-install-recommends install \
+RUN apt-get update -y > /dev/null ; \
+	apt-get install -y software-properties-common > /dev/null ; \
+	LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php > /dev/null ; \
+	apt-get update -y > /dev/null ; \
+	apt-get install --no-install-recommends -y \
                 ca-certificates \
                 curl \
                 git \
@@ -18,16 +18,13 @@ RUN apt-get -y --no-install-recommends install \
                 php7.1-intl \
                 php7.1-ldap \
                 php7.1-mbstring \
-                php7.1-soap \
-                php7.1-sqlite3 \
                 php7.1-xml \
                 php7.1-zip \
-                php-xdebug \
-                unzip \
-                wget > /dev/null
-RUN apt-get update -y
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+                php-xdebug ; \
+	apt-get update -y > /dev/null ; \
+	curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN git clone https://github.com/MCMainiac/PHPUBG.git
-RUN cd PHPUBG && composer install
-RUN cd PHPUBG && ./vendor/bin/phpunit
+RUN git clone https://github.com/MCMainiac/PHPUBG.git --branch master ; \
+	cd PHPUBG ; \
+	composer install ; \
+	./vendor/bin/phpunit
