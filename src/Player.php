@@ -68,19 +68,19 @@ class Player implements \JsonSerializable {
 			$seasonIdentifier,
 			, // seasonDisplay
 			$lastUpdated,
-			$liveTrackingArray,
 			, // PlayerName
 			$this->pubgTrackerId,
-			$statsArray,
-			$matchHistoryArray
+			$statsArray/*,
+			$liveTrackingArray,
+			$matchHistoryArray*/
 		) = array_values($data);
 
 		$this->selectedRegion = Region::findByProperty($regionIdentifier);
 		$this->defaultSeason = Season::findByProperty($seasonIdentifier);
 		$this->lastUpdated = strtotime($lastUpdated);
 
-		foreach ($liveTrackingArray as $liveTrackingMatchArray)
-			$this->liveTracking[] = new MatchLiveTrackingEntry($liveTrackingMatchArray);
+		/*foreach ($liveTrackingArray as $liveTrackingMatchArray)
+			$this->liveTracking[] = new MatchLiveTrackingEntry($liveTrackingMatchArray);*/
 
 		foreach ($statsArray as $stats) {
 			$region = Region::findByProperty($stats['Region']);
@@ -102,8 +102,8 @@ class Player implements \JsonSerializable {
 			$this->stats[$regionId][$seasonId][$matchModeId] = new Stats($region, $season, $matchMode, $stats['Stats']);
 		}
 
-		foreach ($matchHistoryArray as $matchHistoryEntryArray)
-			$this->matchHistory[] = new MatchHistoryEntry($matchHistoryEntryArray);
+		/*foreach ($matchHistoryArray as $matchHistoryEntryArray)
+			$this->matchHistory[] = new MatchHistoryEntry($matchHistoryEntryArray);*/
 	}
 
 	/**

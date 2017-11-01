@@ -43,9 +43,7 @@ class Stat implements \JsonSerializable {
 	 */
 	public function __construct($statArr) {
 		list(
-			$this->partition,
 			$this->label,
-			$this->subLabel,
 			$this->field,
 			$this->category,
 			$this->valueInt,

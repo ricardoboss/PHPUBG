@@ -11,6 +11,8 @@ class Season implements \JsonSerializable {
 	const EARLY_ACCESS_1 = 1;
 	const EARLY_ACCESS_2 = 2;
 	const EARLY_ACCESS_3 = 3;
+	const EARLY_ACCESS_4 = 4;
+	const EARLY_ACCESS_5 = 5;
 
 	/** @var string A string identifier; not to confuse with the id! */
 	protected $seasonIdentifier;
@@ -55,3 +57,5 @@ class Season implements \JsonSerializable {
 new Season(Season::EARLY_ACCESS_1, "2017-pre1", "Early Access Season #1");
 new Season(Season::EARLY_ACCESS_2, "2017-pre2", "Early Access Season #2");
 new Season(Season::EARLY_ACCESS_3, "2017-pre3", "Early Access Season #3");
+new Season(Season::EARLY_ACCESS_4, "2017-pre4", "Early Access Season #4");
+new Season(Season::EARLY_ACCESS_5, "2017-pre5", "Early Access Season #5");
