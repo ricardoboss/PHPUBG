@@ -15,6 +15,7 @@ class Region implements \JsonSerializable {
 	const OCEANIA = 4;
 	const SOUTH_AMERICA = 5;
 	const SOUTH_EAST_ASIA = 6;
+	const JAPAN_KOREA = 7;
 
 	/** @var string The unique identifier for this region. */
 	protected $identifier;
@@ -70,3 +71,4 @@ new Region(Region::ASIA, "as", "Asia");
 new Region(Region::OCEANIA, "oc", "Oceania");
 new Region(Region::SOUTH_AMERICA, "sa", "South America");
 new Region(Region::SOUTH_EAST_ASIA, "sea", "South East Asia");
+new Region(Region::JAPAN_KOREA, "jp/kr", "Japan/Korea");
