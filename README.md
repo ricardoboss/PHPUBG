@@ -80,3 +80,8 @@ When requesting stats, please keep the number of requests at ~1/sec.
 Thanks to [pubgtracker.com](https://pubgtracker.com) for their public api.
 
 Thanks to all contributors!
+
+## Support on Beerpay
+Hey dude! Help me out for a couple of :beers:!
+
+[![Beerpay](https://beerpay.io/MCMainiac/PHPUBG/badge.svg?style=beer-square)](https://beerpay.io/MCMainiac/PHPUBG)  [![Beerpay](https://beerpay.io/MCMainiac/PHPUBG/make-wish.svg?style=flat-square)](https://beerpay.io/MCMainiac/PHPUBG?focus=wish)
